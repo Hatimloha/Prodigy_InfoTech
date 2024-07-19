@@ -19,3 +19,6 @@ plt.title('Histogram of contionus variable')
 
 # Show the plot
 plt.show()
+
+```
+Histogram will create when we run the above script
