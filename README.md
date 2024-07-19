@@ -28,7 +28,7 @@ Analyze traffic accident data to identify patterns related to road conditions, w
 ```
 
 # Tools Used in Project
-Tool User: [Google Colab](https://colab.research.google.com)
+Tool Use: [Google Colab](https://colab.research.google.com)
 ```
 All these tasks were completed using Google Colab. Google Colab provided a powerful and flexible environment for executing our data analysis and visualization processes. With its cloud-based resources, we could efficiently run complex computations and leverage its collaborative features to work seamlessly as a team. The integration of popular data science libraries and the ability to share notebooks easily made Google Colab an ideal platform for completing our data mining tasks.
 ```
