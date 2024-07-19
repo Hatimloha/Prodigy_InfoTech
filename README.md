@@ -36,7 +36,7 @@ All these tasks were completed using Google Colab. Google Colab provided a power
 # Libraries
 ## In this project, we utilized several powerful libraries to perform data analysis and visualization:
 1. matplotlib.pyplot (plt):
-- Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. The pyplot module provides a MATLAB-like interface for plotting.
+> Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. The pyplot module provides a MATLAB-like interface for plotting.
 
 2. NumPy:
 - NumPy is a fundamental package for numerical computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays.
