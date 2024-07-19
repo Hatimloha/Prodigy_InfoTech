@@ -4,11 +4,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+```
 # Creating Dataset
-```python
 ages = np.random.randint(18, 65, size=100)
 
-# Create a histogram
+
 ```python
 # Create a histogram
 plt.hist(ages, bins=10, color='skyblue', edgecolor='black')
@@ -22,7 +22,7 @@ plt.title('Histogram of contionus variable')
 plt.show()
 
 ```
-> Histogram will create when we run the above script
+# Histogram will create when we run the above script
 
 ```python
 import matplotlib.pyplot as plt
@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 genders = ['Male', 'Female', 'Non-Binary', 'Other']
 counts = [120, 150, 20, 10]
 
-```
+```pythone
 # Create a bar chart
 plt.bar(genders, counts, color=['blue', 'pink', 'purple', 'gray'])
 
@@ -44,4 +44,4 @@ plt.title('Bar chart of categorical varibale')
 plt.show()
 
 ```
-> Bar chart will create when we run the above script
+# Bar chart will create when we run the above script
