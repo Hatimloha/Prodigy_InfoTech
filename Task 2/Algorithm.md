@@ -42,4 +42,38 @@ print(titanic_df.head())
 4      0            373450   8.0500   NaN        S
 
 ```
+# Check for missing values
+```python
+print(titanic_df.isnull().sum())
+
+```
+# Output
+```python
+PassengerId      0
+Survived         0
+Pclass           0
+Name             0
+Sex              0
+Age            177
+SibSp            0
+Parch            0
+Ticket           0
+Fare             0
+Cabin          687
+Embarked         2
+dtype: int64
+
+```
+# Handling missing values
+# For example, fill missing values in the 'Age' column with the median
+```python
+titanic_df['Age'].fillna(titanic_df['Age'].median(), inplace=True)
+
+```
+# Explore the distribution of numerical features
+```python
+sns.histplot(titanic_df['Age'], bins=30, kde=True)
+plt.title('Distribution of Age')
+plt.show()
+
 # 
