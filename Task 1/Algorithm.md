@@ -1,6 +1,6 @@
 **Prodigy_task_1**
 
-```Import_library
+```python
 import matplotlib.pyplot as plt
 import numpy as np
 
