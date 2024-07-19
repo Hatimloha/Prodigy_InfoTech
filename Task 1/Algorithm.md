@@ -5,10 +5,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 ```
+```python
 # Creating Dataset
 ages = np.random.randint(18, 65, size=100)
 
-
+```
 ```python
 # Create a histogram
 plt.hist(ages, bins=10, color='skyblue', edgecolor='black')
