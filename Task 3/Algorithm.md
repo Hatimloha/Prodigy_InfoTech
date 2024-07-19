@@ -137,5 +137,250 @@ bank[bank.duplicated()]
 ```
 # Exploratory Data Analysis Age Distribution
 ```python
+sns.histplot(x="age", data=bank, kde=True, hue= "y")
+plt.title("Age Distribution and Deposits\n")
+plt.show()
 
+# Output: Age Distribution and Deposits Graph
 ```
+# Distribution of Occupation
+```python
+plt.figure(figsize=(15,4))
+sns.countplot(x="job", data= bank, hue ="y")
+plt.title("Occupation Distribution and Deposits\n")
+plt.show()
+
+# Output: Occupation Distribution and Deposits Graph
+```
+
+# Distribution of Marital Status
+```python
+plt.figure(figsize=(7,3))
+sns.countplot(x="marital", data= bank, hue ="y")
+plt.title("Marital Status and Deposits\n")
+plt.show()
+
+# Output: Marital Status and Deposits Graph
+```
+
+# Distribution of Education Status
+```python
+plt.figure(figsize=(12,4))
+sns.countplot(x="education", data= bank, hue ="y")
+plt.title("Education Status and Deposits\n")
+plt.show()
+
+# Output: Education Status and Deposits Graph
+```
+
+# bank.default.value_counts()
+```python
+default
+no         32588
+unknown     8597
+yes            3
+Name: count, dtype: int64
+```
+
+# Distribution of Housing Loan
+```python
+plt.figure(figsize=(6,3.5))
+sns.countplot(x="housing", data= bank, hue ="y")
+plt.title("Housing Loan Distribution and Deposits\n")
+plt.show()
+
+# Output: Housing Loan Distribution and Deposits Graph
+```
+
+# Distribution of Personal Loan
+```python
+plt.figure(figsize=(6,3.5))
+sns.countplot(x="loan", data= bank, hue ="y")
+plt.title("Personal Loan Distribution and Deposits\n")
+plt.show()
+
+# Output: Personal Loan Distribution and Deposits Graph
+```
+
+# Distribution of Outcome (Term Deposits)
+```python
+bank.y.value_counts()
+keys = bank.y.value_counts().index
+data = bank.y.value_counts().values
+plt.figure(figsize=(6,3.5))
+explode = [0,0.1]
+plt.pie(data,labels=keys,explode=explode, autopct='%.0f%%')
+plt.show()
+
+Output: Pie Graph
+```
+
+# Label Encoding Categorical Features
+```python
+cols = bank.select_dtypes("object").columns
+cols
+```
+
+```python
+le = LabelEncoder()
+bank[cols] = bank[cols].apply(le.fit_transform)
+```
+
+```python
+bank.head(3)
+```
+
+# Output
+```python
+age	job	marital	education	default	housing	loan	contact	month	day_of_week	...	campaign	pdays	previous	poutcome	emp.var.rate	cons.price.idx	cons.conf.idx	euribor3m	nr.employed	y
+0	56	3	1	0	0	0	0	1	6	1	...	1	999	0	1	1.1	93.994	-36.4	4.857	5191.0	0
+1	57	7	1	3	1	0	0	1	6	1	...	1	999	0	1	1.1	93.994	-36.4	4.857	5191.0	0
+2	37	7	1	3	0	2	0	1	6	1	...	1	999	0	1	1.1	93.994	-36.4	4.857	5191.0	0
+3 rows × 21 columns
+```
+
+```python
+plt.figure(figsize=(23,10))
+sns.heatmap(bank.corr(), cmap='bwr', annot=True)
+plt.show()
+
+# Output: Graph in scale
+```
+
+# Standardization
+```python
+#Splitting input and output
+X = bank.drop("y", axis=1)
+y = bank.y
+```
+
+```python
+scaler = StandardScaler()
+
+X_scaled = pd.DataFrame(scaler.fit_transform(X), columns = X.columns)
+```
+
+# Model building - Decision Tree Classifier
+```python
+#Train-test split
+train_X, test_X, train_y, test_y = train_test_split(X_scaled, y, test_size=0.3)
+```
+
+```python
+decision_tree = DecisionTreeClassifier()
+decision_tree.fit(train_X, train_y)
+```
+
+```python
+print('Train Score: {}'.format(decision_tree.score(train_X, train_y)))
+print('Test Score: {}'.format(decision_tree.score(test_X, test_y)))
+```
+
+```python
+cross_val_score(decision_tree, train_X, train_y, cv=5).mean()
+```
+
+```python
+ypred = decision_tree.predict(test_X)
+print(classification_report(test_y,ypred))
+```
+
+
+# Output
+```python
+ precision    recall  f1-score   support
+
+           0       0.94      0.94      0.94     10978
+           1       0.52      0.53      0.53      1379
+
+    accuracy                           0.89     12357
+   macro avg       0.73      0.74      0.73     12357
+weighted avg       0.89      0.89      0.89     12357
+```
+
+# Hyperparamter tunning
+```python
+param_grid = {
+    'max_depth': [3, 5, 7,10, None],
+    'criterion' : ['gini', 'entropy'],
+    'min_samples_leaf': [3, 5, 7, 9,10,20]
+    }
+```
+
+```python
+gscv = GridSearchCV(decision_tree, param_grid, cv=5, verbose=1)
+gscv.fit(train_X, train_y)
+```
+
+```python
+gscv.best_params_
+```
+
+```python
+gscv.best_estimator_
+```
+
+```python
+cross_val_score(gscv.best_estimator_, train_X, train_y, cv=5).mean()
+```
+
+```python
+clf = DecisionTreeClassifier(criterion= 'gini', max_depth= 5, min_samples_leaf = 3)
+clf.fit(train_X, train_y)
+```
+
+```python
+print('Train Score: {}'.format(clf.score(train_X, train_y)))
+print('Test Score: {}'.format(clf.score(test_X, test_y)))
+```
+
+```python
+pred_y = clf.predict(test_X)
+```
+
+# Confusion Matrix
+```python
+cm = confusion_matrix(pred_y, test_y)
+ConfusionMatrixDisplay(cm, display_labels=clf.classes_).plot()
+plt.show()
+
+# Output: Graph
+```
+
+# Classification Report
+```python
+print(classification_report(pred_y, test_y))
+```
+
+# Output
+```python
+         precision    recall  f1-score   support
+
+           0       0.97      0.94      0.95     11271
+           1       0.52      0.66      0.58      1086
+
+    accuracy                           0.92     12357
+   macro avg       0.74      0.80      0.77     12357
+weighted avg       0.93      0.92      0.92     12357
+```
+
+# Accuracy Score
+```python
+accuracy = accuracy_score(test_y,pred_y)
+print("Test Accuracy of Decision Tree Classifier : {}".format(accuracy*100))
+```
+
+# Cross Validation Score
+```python
+Cross_val = cross_val_score(clf, test_X,test_y, cv=5).mean()
+print("Cross-Validation Accuracy Scores Decision Tree : ",Cross_val*100)
+```
+
+# Visualizing the Tree
+```python
+from sklearn import tree
+fig = plt.figure(figsize=(25,20))
+t= tree.plot_tree(clf,filled=True,feature_names=X.columns)
+```
+
+# Output: Visualizing Graph
