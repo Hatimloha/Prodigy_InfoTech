@@ -6,9 +6,9 @@ import numpy as np
 
 ```
 # Creating Dataset
-ages = np.random.randint(18, 65, size=100)
+> ages = np.random.randint(18, 65, size=100)
 
-```
+```python
 # Create a histogram
 plt.hist(ages, bins=10, color='skyblue', edgecolor='black')
 
@@ -20,9 +20,10 @@ plt.title('Histogram of contionus variable')
 # Show the plot
 plt.show()
 
+```
 > Histogram will create when we run the above script
 
-```
+```python
 import matplotlib.pyplot as plt
 
 #sample data
@@ -41,4 +42,5 @@ plt.title('Bar chart of categorical varibale')
 # Show the plot
 plt.show()
 
+```
 > Bar chart will create when we run the above script
