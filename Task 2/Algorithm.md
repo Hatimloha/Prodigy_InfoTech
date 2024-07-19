@@ -76,4 +76,39 @@ sns.histplot(titanic_df['Age'], bins=30, kde=True)
 plt.title('Distribution of Age')
 plt.show()
 
-# 
+# Output:  Graph will be created
+
+```
+# Explore the distribution of categorical features
+```python
+sns.countplot(x='Sex', data=titanic_df)
+plt.title('Distribution of Gender')
+plt.show()
+
+# Output:  Graph will be created
+```
+# Explore the relationship between variables
+```python
+sns.scatterplot(x='Age', y='Fare', data=titanic_df, hue='Survived', palette='Set1')
+plt.title('Scatterplot of Age and Fare by Survival')
+plt.show()
+
+Output: Visualization Graph will be created
+```
+# Explore survival rates across different categories
+```python
+sns.barplot(x='Pclass', y='Survived', data=titanic_df, hue='Sex', palette='viridis')
+plt.title('Survival Rates by Passenger Class and Gender')
+plt.show()
+
+# Output:  Graph will be created
+```
+```python
+numeric_df = titanic_df.select_dtypes(include=['number'])
+correlation_matrix = numeric_df.corr()
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix')
+plt.show()
+```
+# Output: Correlation Matrix
+
