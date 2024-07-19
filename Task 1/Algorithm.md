@@ -20,5 +20,25 @@ plt.title('Histogram of contionus variable')
 # Show the plot
 plt.show()
 
+> Histogram will create when we run the above script
+
 ```
-Histogram will create when we run the above script
+import matplotlib.pyplot as plt
+
+#sample data
+genders = ['Male', 'Female', 'Non-Binary', 'Other']
+counts = [120, 150, 20, 10]
+
+```
+# Create a bar chart
+plt.bar(genders, counts, color=['blue', 'pink', 'purple', 'gray'])
+
+# Add labels and title
+plt.xlabel('Gender')
+plt.ylabel('Count')
+plt.title('Bar chart of categorical varibale')
+
+# Show the plot
+plt.show()
+
+> Bar chart will create when we run the above script
