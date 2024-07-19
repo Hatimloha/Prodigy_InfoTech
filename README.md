@@ -1,7 +1,6 @@
-```
 _**Company Name: Prodigy_InfoTech**_
+
 _**Data Science Project**_
-```
 
 ```
 In this project, we undertake various data mining tasks to analyze and visualize data. The tasks include:
