@@ -133,32 +133,28 @@ plt.show()
 # Output: Sentiment Distribution Graph
 ```
 
-#
+# Analysis On particular brand or company
 ```python
-
+brand_data = df[df['Entity'].str.contains('Microsoft', case=False)]
+brand_sentiment_counts = brand_data['Sentiment'].value_counts()
+brand_sentiment_counts
 ```
 
-#
+# Output
 ```python
-
+Sentiment
+Neutral       816
+Negative      748
+Positive      573
+Irrelevant    167
+Name: count, dtype: int64
 ```
 
-#
 ```python
-
+plt.figure(figsize=(6, 6))
+plt.pie(brand_sentiment_counts, labels=brand_sentiment_counts.index, autopct='%1.1f%%', startangle=140)
+plt.title('Sentiment Distribution for Microsoft')
+plt.show()
 ```
 
-#
-```python
-
-```
-
-#
-```python
-
-```
-
-#
-```python
-
-```
+# Output: Sentiment Distribution for Microsoft Pie Chart
